@@ -1,0 +1,71 @@
+{
+  "name": "vscode-behat-in-docker",
+  "displayName": "Behat in Docker",
+  "description": "Run Behat tests inside Docker containers",
+  "version": "0.0.1",
+  "icon": "icon.png",
+  "publisher": "xMIkeXeeioi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Michael-vb/vscode-behat-in-docker"
+  },
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Testing"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Behat in Docker",
+      "properties": {
+        "behatDocker.containerName": {
+          "type": "string",
+          "default": "",
+          "description": "Name of the Docker container where tests should run",
+          "order": 1
+        },
+        "behatDocker.containerPath": {
+          "type": "string",
+          "default": "/var/www",
+          "description": "Path inside the Docker container where the project is mounted"
+        },
+        "behatDocker.behatPath": {
+          "type": "string",
+          "default": "vendor/bin/behat",
+          "description": "Path to Behat executable relative to project root"
+        },
+        "behatDocker.testFilePattern": {
+          "type": "string",
+          "default": "**/*.feature",
+          "description": "Pattern to identify feature files"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "vscode-test",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/sinon": "^17.0.3",
+    "@types/vscode": "^1.96.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.16.0",
+    "sinon": "^19.0.2",
+    "typescript": "^5.7.2"
+  }
+}
